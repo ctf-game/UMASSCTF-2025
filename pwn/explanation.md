@@ -53,6 +53,16 @@ return param_1;
 ``` 
 Notice no length check on %s! A classic **stack-based buffer overflow**.
 
+### Extra: The secure way of "scanf" 
+To make the code safer and prevent a stack-based buffer overflow, it should have a length check to ensure that the user input doesn't exceed the allocated buffer size. Here’s how it could look like with proper validation:
+
+```c
+puts("Please type in your new name:");
+scanf("%40s", param_1);  // Limits input to 40 characters to avoid buffer overflow
+printf("Your current name is: %s\n", param_1);
+return param_1;
+```
+
 ## 🗂️ 3. How the Stack Is Laid Out
 
 When `change_name` is called, the CPU builds a new **stack frame**. This frame holds:
